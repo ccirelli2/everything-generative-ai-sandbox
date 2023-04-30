@@ -1,2 +1,3 @@
-# laingchain-sandbox
-sandbox for learning how to use the lanchain library.
+# everything-generative-ai-sandbox
+
+all work on libraries to learn generative ai.
