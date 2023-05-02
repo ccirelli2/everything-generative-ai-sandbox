@@ -1,0 +1,49 @@
+Retrieval Plugin
+======================
+
+- Plugin
+    - This is a plugin for ChatGPT that enables semantic search and retrieval of personal
+    or organizational documents.  it allows users to obtain the most relevant document
+    snippets from their data sources, such as files, notes, or emails by asking questions
+    or expressing needs in natural language.
+    - The plugin uses OpenAIs text-embedding-data-002 embeddings model to generate embeddings
+    of document chunks and then stores and queries them using a vector database on the backend.
+    - Several vector database providers are supported.
+    - FastAPI server exposes the plugin's endpoints for upserting, querying and deleting
+    documents.
+- Metadata Files
+    - Users can refine their search results by providing metadata filters by source, author,
+    or other criteria.
+    - ?? The vector database needs to be hosted on a server??
+- Memory Feature
+    - retrieval plugin can provide ChatGPT with memory.  By utilizing the plugins
+    upsert endpoint, ChatGPT can save snippets from the conversation to the vector database
+    for later reference.
+    - **this functionality contributes to a more context-aware chat experience by allowing
+    ChatGPT to remember and retrieve information from previous conversations.
+- Security
+    - The retrieval system is using context learning.
+    - It allows ChatGPT to source important information from the vector database, add it to
+    the conversation (context) to then be utilized in the current session.
+    - This information does not go back to source.
+- Fast API
+    - Retrieval plugin is built using FastAPI, a web framework for building APIs with Python.
+    - API exposes the following endpoints - upser, query, deleting documents from the vector
+    database.
+
+
+Notes
+======================
+- It may be the case that we need first research the dependencies associated with this project.
+- It is likely the case that we need to know how to use vector databases and possibly
+have a subscription.
+- Docs:
+    - includes documentation for setting up and using each vector database provider,
+    webhook, and removing unused dependencies.
+
+References
+======================
+1. https://github.com/openai/chatgpt-retrieval-plugin#quickstart
+2. ChatGPT Plugin Docs: https://openai.com/blog/chatgpt-plugins
+3. Retrieval Memory Plugin Configuration: github.com/openai/chatgpt-retrieval-plugin/tree/main/examples/memory
+
