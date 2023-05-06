@@ -37,7 +37,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 # Globals
-DIR_ROOT = "/home/oem/repositories/generative-ai-sandbox/gensim-sandbox"
+DIR_ROOT = "/gensim_sandbox"
 DIR_DATA = os.path.join(DIR_ROOT, 'data')
 
 # Import Data
