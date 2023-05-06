@@ -19,6 +19,7 @@ embeddings = model.encode(sentences)
 
 # Print Embeddings
 for e in embeddings:
-    print(f"Embedding length => {len(e)}")
+    print(len(e))
+
 
 
