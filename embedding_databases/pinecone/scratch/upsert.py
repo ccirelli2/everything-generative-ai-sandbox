@@ -1,5 +1,10 @@
 """
 Script to learn how to upsert data into pinecone.
+
+References
+=========================
+- https://docs.pinecone.io/docs/insert-data
+
 """
 import os
 import pinecone

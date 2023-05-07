@@ -2,6 +2,13 @@
 
 All work on libraries to learn generative ai.
 
+Learning Approach:
+- pinecone: create vectors, query vectors.
+- pinecone: learn how to use templates to pass prompts with context data to LLMs.
+- langchain: agents - learn how to use agents to call vectors.
+- use langchain and pinecone together for maximizing in-context learning.
+
+
 References
 ==========================
 https://github.com/openai/chatgpt-retrieval-plugin#quickstart
@@ -32,6 +39,11 @@ Milvus Tutorials
 - Includes notebooks and turn key code examples for business use cases
     for embedding databases.
 
+Langchain
+- Document Assistant: https://www.mlq.ai/gpt-3-document-assistant-langchain/
+- Research Assistant: https://www.mlq.ai/gpt-3-enabled-research-assistant-langchain-pinecone/
 
+Pinecone
+- Conversational Memory & Templates: https://www.pinecone.io/learn/langchain-conversational-memory/
 
 
