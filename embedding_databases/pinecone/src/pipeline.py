@@ -5,10 +5,8 @@ Pipeline of functions to create embeddings, upsert and query db.
 import os
 import logging
 import pinecone
-from more_itertools import batched
 from sentence_transformers import SentenceTransformer
 from pinecone.core.client.model.vector import Vector
-
 
 # Setup
 logger = logging.getLogger(__name__)
@@ -38,18 +36,18 @@ class EmbeddingsPipeline:
         :param embeddings: sentence embeddings.
 
         """
-        self.path2file=path
-        self.file_name=file_name
-        self.author=author
-        self.title=title
-        self.source=source
-        self.embedding_model_name=embedding_model_name
-        self.index=list
-        self.sentences=str
-        self.embeddings=list
-        self.index_name=str
-        self.index_dim=int
-        self.index_metric=str
+        self.path = path
+        self.file_name = file_name
+        self.author = author
+        self.title = title
+        self.source = source
+        self.embedding_model_name = embedding_model_name
+        self.index = []
+        self.sentences = ""
+        self.embeddings = []
+        self.index_name = ""
+        self.index_dim = 0
+        self.index_metric = ""
 
     def pipeline(self):
         """
@@ -58,7 +56,6 @@ class EmbeddingsPipeline:
         """
         self.load_text()
         self.create_index()
-
 
     def load_text(self):
         """
@@ -74,7 +71,7 @@ class EmbeddingsPipeline:
     def create_index(
             self,
             delete_duplicate_index: bool = False
-    ) -> pinecone.Index:
+    ):
         """
 
         :param delete_duplicate_index:
@@ -95,7 +92,7 @@ class EmbeddingsPipeline:
                 logger.info("Index load completed\n")
             else:
                 logger.info(f"Option elected to delete existing index {self.index_name} and create anew")
-                pinecone.delete_index(index_name=self.index_name)
+                pinecone.delete_index(name=self.index_name)
                 logger.info("Index deleted. Creating New Index")
                 index = pinecone.create_index(
                     name=self.index_name,
@@ -105,7 +102,8 @@ class EmbeddingsPipeline:
                 logger.info(f"Index creation completed.\n")
         else:
             logger.info(f"No index found for index name => {self.index_name}")
-            logger.info(f"Creating Pinecone index w/ Name {self.index_name} | Dim {self.index_dim} | Metric {self.index_metric}")
+            logger.info(
+                f"Creating Pinecone index w/ Name {self.index_name} | Dim {self.index_dim} | Metric {self.index_metric}")
             index = pinecone.create_index(
                 name=self.index_name,
                 dimension=self.index_dim,
@@ -140,19 +138,19 @@ class EmbeddingsPipeline:
         :rtype: object
         :return:
         """
-        logger.info(f"Creating upsert vectors from author => {self.author}, title => {self.title}, source => {self.source}")
+        logger.info(
+            f"Creating upsert vectors from author => {self.author}, title => {self.title}, source => {self.source}")
 
         # Results
         vectors = []
         num_sentences = len(self.sentences)
         num_embeddings = len(self.embeddings)
-        assert num_sentences == num_embeddings,\
+        assert num_sentences == num_embeddings, \
             f"Number of Sentences {num_sentences} != Number of Embeddings {num_embeddings}"
 
         # Create Input Vectors
         count = 0
         for i, j in zip(self.embeddings, self.sentences):
-
             # Create Vector using picone Vector class
             v = Vector(
                 id=f"vector_{count}",
