@@ -21,9 +21,7 @@ References
 import os
 import logging
 import pinecone
-import itertools
 from more_itertools import batched
-from pinecone.core.client.model.vector import Vector
 from decouple import config
 from sentence_transformers import SentenceTransformer
 
