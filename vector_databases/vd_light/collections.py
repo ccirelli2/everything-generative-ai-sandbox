@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(level=logging.INFO)
 
 
-def create_embeddings(sentences: list[text], embedding_model_name: str):
+def create_embeddings(sentences: list[str], embedding_model_name: str, index_dim: int):
     """
     Create embeddings from sentences.
 
@@ -20,7 +20,7 @@ def create_embeddings(sentences: list[text], embedding_model_name: str):
     logger.info(f"Embedding {len(sentences)} sentences")
     embeddings = model.encode(sentences)
     embedding_dim_obs = len(embeddings[0])
-    assert embedding_dim_obs == self.index_dim, "Embedding dimensions do not match index dimensions"
+    assert embedding_dim_obs == index_dim, "Embedding dimensions do not match index dimensions"
     logger.info(f"Embedding Dimensions => {embedding_dim_obs}")
     logger.info("Embedding complete\n")
-    return return embedding
+    return embeddings
