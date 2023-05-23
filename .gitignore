@@ -1,5 +1,7 @@
 # Project specific
 *.whl
+milvus_env
+
 
 
 # Byte-compiled / optimized / DLL files
